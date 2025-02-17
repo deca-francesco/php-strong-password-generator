@@ -1,3 +1,38 @@
+<?php
+// prendo la lunghezza della password se c'è, altrimenti null
+$passwordLength = $_GET["passwordLength"] ?? null;
+
+// se la lunghezza esiste genero subito la password, altrimenti null
+$password = $passwordLength ? generatePassword($passwordLength) : null;
+
+function generatePassword()
+{
+    // prendo la lunghezza della password da fuori 
+    global $passwordLength;
+
+    // controllo se la lunghezza esiste, altrimenti interrompo
+    if (!$passwordLength || $passwordLength < 8 || $passwordLength > 16) {
+        return;
+    }
+
+    // tutto insieme nella milestone 1
+    $characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+    // rimane in questo scope
+    $password = "";
+
+    // genero una password casuale di lunghezza $passwordLength
+    for ($i = 0; $i < $passwordLength; $i++) {
+        // ad ogni iterazione aggiungo a password un carattere preso da $charaters 
+        // accedo a $characters come un array, all'indice casuale (tra 0 e la lunghezza di $characters -1 perché parto da 0)
+        $password .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    // ritorno solo il valore
+    return $password;
+}
+
+?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -35,17 +70,33 @@
     </header>
     <main>
         <div class="container">
+
             <form action="" class="card bg-white p-2">
                 <div class="row row-cols-2 mb-3">
                     <div class="col">
                         <label for="passwordLength">Lunghezza password:</label>
                     </div>
                     <div class="col">
-                        <input type="number" name="passwordLength" id="passwordLength" min="1" max="10" class="w-100">
+                        <input type="number" name="passwordLength" id="passwordLength" class="w-50" min="8" max="16" value="<?php echo $passwordLength ?? null ?>">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Genera password</button>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Genera password</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='./index.php'">Annulla</button>
+                </div>
             </form>
+
+            <?php if ($passwordLength !== null && ($passwordLength < 8 || $passwordLength > 16)): ?>
+                <div class="alert alert-danger mt-3">
+                    <strong>Errore: lunghezza non valida!</strong>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($password && $passwordLength >= 8 && $passwordLength <= 16): ?>
+                <div class="alert alert-success mt-3">
+                    <strong>Ecco la tua password di <?php echo $passwordLength ?> caratteri:</strong> <?php echo $password; ?>
+                </div>
+            <?php endif; ?>
         </div>
     </main>
     <footer>
