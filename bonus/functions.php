@@ -49,12 +49,14 @@ function generatePassword($length, $uppercase, $lowercase, $numbers, $symbols, $
     // genero una password casuale di lunghezza $length
     for ($i = 0; $i < $length; $i++) {
         // col do while prendo un carattere casuale almeno una volta anche se non voglio ripetizioni
+        // il ciclo si ripete fino a quando non trovo un carattere che non è già stato utilizzato (con in_array($char, $usedChars)
         do {
             // accedendo alla stringa con le [] come un array
             // prendo il carattere con indice da 0 fino alla lunghezza di $characters -1
             $char = $characters[rand(0, strlen($characters) - 1)];
         } while (!$allowRepeats && in_array($char, $usedChars));
 
+        // solo dopo lo inserisco nella password e nell'array dei caratteri usati
         $password .= $char;
         $usedChars[] = $char;
     }

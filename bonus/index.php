@@ -42,7 +42,7 @@
                         <label for="passwordLength">Lunghezza password (min 8, max 16):</label>
                     </div>
                     <div class="col">
-                        <input type="number" name="passwordLength" id="passwordLength" class="w-50" min="8" max="16" required>
+                        <input type="number" name="passwordLength" id="passwordLength" class="w-50" min="8" max="16" value="8" required>
                     </div>
                 </div>
                 <hr>
