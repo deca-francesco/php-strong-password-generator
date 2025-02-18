@@ -37,29 +37,46 @@ require_once "./functions.php";
     <header>
         <div class="container mt-5 text-center">
             <h1>Strong password generator - Risultato</h1>
-            <?php if ($password) : ?>
-                <h3>Ecco la tua password sicura di <?php echo strlen($password) ?> caratteri!</h3>
+            <?php if ($password && $password !== "err") : ?>
+                <h3>Ecco la tua password sicura di <?php echo strlen($password) ?> caratteri con:</h3>
+                <h5>
+                    <?php echo $allowRepeats ? "<div>- Ripetizioni</div>" : "<div>- Nessuna ripetizione</div>" ?>
+                    <?php echo $useUppercase ? "<div>- Maiuscole</div>" : "" ?>
+                    <?php echo $useLowercase ? "<div>- Minuscole</div>" : "" ?>
+                    <?php echo $useNumbers ? "<div>- Numeri</div>" : "" ?>
+                    <?php echo $useSymbols ? "<div>- Simboli</div>" : "" ?>
+                </h5>
             <?php endif ?>
         </div>
     </header>
     <main>
         <div class="container">
 
-            <!-- alert se la lunghezza non è valida o se viene inviato il form vuoto ($passwordLength sarà una stringa vuota)-->
+            <!-- alert di errore -->
             <?php if (!$password) : ?>
                 <div class="alert alert-danger mt-3 d-flex justify-content-between align-items-center">
-                    <strong>Errore: lunghezza non valida! Deve essere compresa tra 8 e 16 caratteri</strong>
+                    <strong>ERRORE: Seleziona almeno un set di caratteri valido!</strong>
+                    <a href="./index.php" class="btn btn-outline-danger">Torna indietro</a>
+                </div>
+            <?php endif; ?>
+
+            <!-- alert di errore dei numeri -->
+            <?php if ($password === "err") : ?>
+                <div class="alert alert-danger mt-3 d-flex justify-content-between align-items-center">
+                    <strong><?php echo "ERRORE: La password non può contenere solo numeri senza ripetizioni per più di 10 caratteri" ?></strong>
                     <a href="./index.php" class="btn btn-outline-danger">Torna indietro</a>
                 </div>
             <?php endif; ?>
 
             <!-- alert con la password -->
-            <?php if ($password) : ?>
+            <?php if ($password && $password !== "err") : ?>
                 <div class="alert alert-success text-center mt-3">
                     <?php echo "<strong>$password</strong>" ?>
                 </div>
                 <div class="mt-3 text-center">
-                    <a href="index.php" class="btn btn-primary">Genera un'altra password</a>
+                    <!-- ricarico la pagina con gli stessi parametri -->
+                    <a href="result.php?<?php echo $_SERVER['QUERY_STRING']; ?>" class="btn btn-primary">Genera Nuova Password</a>
+                    <a href="index.php" class="btn btn-secondary">Torna alle opzioni</a>
                 </div>
             <?php endif; ?>
         </div>

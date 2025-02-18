@@ -42,7 +42,29 @@
                         <label for="passwordLength">Lunghezza password (min 8, max 16):</label>
                     </div>
                     <div class="col">
-                        <input type="number" name="passwordLength" id="passwordLength" class="w-50" min="8" max="16">
+                        <input type="number" name="passwordLength" id="passwordLength" class="w-50" min="8" max="16" required>
+                    </div>
+                </div>
+                <hr>
+                <div class="row row-cols-2 mb-3">
+                    <div class="col">
+                        <label for="allowRepeats">Permetti ripetizioni?</label>
+                    </div>
+                    <div class="col">
+                        <div><input type="radio" name="allowRepeats" value="true" checked> Sì</div>
+                        <div><input type="radio" name="allowRepeats" value="false"> No</div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row row-cols-2 mb-5">
+                    <div class="col">
+                        <label>Caratteri consentiti:</label>
+                    </div>
+                    <div class="col d-flex flex-column">
+                        <div><input type="checkbox" name="uppercase" value="true" checked> Lettere Maiuscole</div>
+                        <div><input type="checkbox" name="lowercase" value="true" checked> Lettere Minuscole</div>
+                        <div><input type="checkbox" name="numbers" value="true" checked> Numeri</div>
+                        <div><input type="checkbox" name="symbols" value="true"> Simboli</div>
                     </div>
                 </div>
                 <div class="col">
