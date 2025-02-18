@@ -1,11 +1,3 @@
-<?php
-
-// require perché è importante, _once per best practice
-require_once "./functions.php";
-
-?>
-
-
 <!doctype html>
 <html lang="en">
 
@@ -44,34 +36,21 @@ require_once "./functions.php";
     <main>
         <div class="container">
 
-            <form action="" class="card bg-white p-2">
+            <form action="./result.php" class="card bg-white px-2 py-3">
                 <div class="row row-cols-2 mb-3">
                     <div class="col">
-                        <label for="passwordLength">Lunghezza password:</label>
+                        <label for="passwordLength">Lunghezza password (min 8, max 16):</label>
                     </div>
                     <div class="col">
-                        <input type="number" name="passwordLength" id="passwordLength" class="w-50" min="8" max="16" value="<?php echo $passwordLength ?? null ?>">
+                        <input type="number" name="passwordLength" id="passwordLength" class="w-50" min="8" max="16">
                     </div>
                 </div>
                 <div class="col">
                     <button type="submit" class="btn btn-primary">Genera password</button>
-                    <button type="button" class="btn btn-secondary" onclick="window.location.href='./index.php'">Annulla</button>
+                    <a href="./index.php" class="btn btn-secondary">Annulla</a>
                 </div>
             </form>
 
-            <!-- alert se la lunghezza non è valida o se viene inviato il form vuoto ($passwordLength sarà una stringa vuota)-->
-            <?php if ($passwordLength !== null && ($passwordLength < 8 || $passwordLength > 16)): ?>
-                <div class="alert alert-danger mt-3">
-                    <strong>Errore: lunghezza non valida! Deve essere compresa tra 8 e 16 caratteri</strong>
-                </div>
-            <?php endif; ?>
-
-            <!-- alert con la password -->
-            <?php if ($password && $passwordLength >= 8 && $passwordLength <= 16): ?>
-                <div class="alert alert-success mt-3">
-                    <?php echo "<strong>Ecco la tua password di $passwordLength caratteri:</strong> $password" ?>
-                </div>
-            <?php endif; ?>
         </div>
     </main>
     <footer>

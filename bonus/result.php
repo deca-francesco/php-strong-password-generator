@@ -1,6 +1,5 @@
 <?php
 
-// require perché è importante, _once per best practice
 require_once "./functions.php";
 
 ?>
@@ -10,7 +9,7 @@ require_once "./functions.php";
 <html lang="en">
 
 <head>
-    <title>PHP password generator</title>
+    <title>PHP password generator - result</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -37,47 +36,34 @@ require_once "./functions.php";
 <body class="bg-dark text-white">
     <header>
         <div class="container mt-5 text-center">
-            <h1>Strong password generator</h1>
-            <h3>Genera la tua password sicura</h3>
+            <h1>Strong password generator - Risultato</h1>
+            <?php if ($password) : ?>
+                <h3>Ecco la tua password sicura di <?php echo strlen($password) ?> caratteri!</h3>
+            <?php endif ?>
         </div>
     </header>
     <main>
         <div class="container">
 
-            <form action="" class="card bg-white p-2">
-                <div class="row row-cols-2 mb-3">
-                    <div class="col">
-                        <label for="passwordLength">Lunghezza password:</label>
-                    </div>
-                    <div class="col">
-                        <input type="number" name="passwordLength" id="passwordLength" class="w-50" min="8" max="16" value="<?php echo $passwordLength ?? null ?>">
-                    </div>
-                </div>
-                <div class="col">
-                    <button type="submit" class="btn btn-primary">Genera password</button>
-                    <button type="button" class="btn btn-secondary" onclick="window.location.href='./index.php'">Annulla</button>
-                </div>
-            </form>
-
             <!-- alert se la lunghezza non è valida o se viene inviato il form vuoto ($passwordLength sarà una stringa vuota)-->
-            <?php if ($passwordLength !== null && ($passwordLength < 8 || $passwordLength > 16)): ?>
-                <div class="alert alert-danger mt-3">
+            <?php if (!$password) : ?>
+                <div class="alert alert-danger mt-3 d-flex justify-content-between align-items-center">
                     <strong>Errore: lunghezza non valida! Deve essere compresa tra 8 e 16 caratteri</strong>
+                    <a href="./index.php" class="btn btn-outline-danger">Torna indietro</a>
                 </div>
             <?php endif; ?>
 
             <!-- alert con la password -->
-            <?php if ($password && $passwordLength >= 8 && $passwordLength <= 16): ?>
-                <div class="alert alert-success mt-3">
-                    <?php echo "<strong>Ecco la tua password di $passwordLength caratteri:</strong> $password" ?>
+            <?php if ($password) : ?>
+                <div class="alert alert-success text-center mt-3">
+                    <?php echo "<strong>$password</strong>" ?>
+                </div>
+                <div class="mt-3 text-center">
+                    <a href="index.php" class="btn btn-primary">Genera un'altra password</a>
                 </div>
             <?php endif; ?>
         </div>
     </main>
-    <footer>
-
-    </footer>
-
 </body>
 
 </html>
