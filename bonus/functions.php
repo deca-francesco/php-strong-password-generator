@@ -11,7 +11,8 @@ $useUppercase = isset($_GET['uppercase']);
 $useLowercase = isset($_GET['lowercase']);
 $useNumbers = isset($_GET['numbers']);
 $useSymbols = isset($_GET['symbols']);
-$allowRepeats = isset($_GET['allowRepeats']) && $_GET['allowRepeats'] === "true";
+// col radio button è sempre settato (true o false), se è false la comparazione è falsa e sarà falso anche $allowRepeats, altrimenti tutto sarà true
+$allowRepeats = $_GET['allowRepeats'] === "true";
 
 // la eseguo sempre così se non va bene viene sovrascritta a stringa vuota
 $password = $_SESSION['password'] = generatePassword($passwordLength, $useUppercase, $useLowercase, $useNumbers, $useSymbols, $allowRepeats);
@@ -43,22 +44,15 @@ function generatePassword($length, $uppercase, $lowercase, $numbers, $symbols, $
 
     // rimane in questo scope
     $password = "";
-    // array per controllare le ripetizioni 
-    $usedChars = [];
 
-    // genero una password casuale di lunghezza $length
     for ($i = 0; $i < $length; $i++) {
-        // col do while prendo un carattere casuale almeno una volta anche se non voglio ripetizioni
-        // il ciclo si ripete fino a quando non trovo un carattere che non è già stato utilizzato (con in_array($char, $usedChars)
-        do {
-            // accedendo alla stringa con le [] come un array
-            // prendo il carattere con indice da 0 fino alla lunghezza di $characters -1
-            $char = $characters[rand(0, strlen($characters) - 1)];
-        } while (!$allowRepeats && in_array($char, $usedChars));
-
-        // solo dopo lo inserisco nella password e nell'array dei caratteri usati
+        $char = $characters[rand(0, strlen($characters) - 1)];
+        // se non ci sono le ripetizioni tolgo char da characters
+        if (!$allowRepeats) {
+            $characters = str_replace($char, '', $characters);
+        }
+        // infine inserisco nella password
         $password .= $char;
-        $usedChars[] = $char;
     }
 
     // ritorno solo il valore
