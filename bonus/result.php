@@ -75,7 +75,7 @@ require_once "./functions.php";
                 </div>
                 <div class="mt-3 text-center">
                     <!-- ricarico la pagina con gli stessi parametri -->
-                    <a href="result.php?<?php echo $_SERVER['QUERY_STRING']; ?>" class="btn btn-primary">Genera Nuova Password</a>
+                    <a href="result.php?<?php echo $_SERVER['QUERY_STRING']; ?>" class="btn btn-primary">Genera nuova password</a>
                     <a href="index.php" class="btn btn-secondary">Torna alle opzioni</a>
                 </div>
             <?php endif; ?>
