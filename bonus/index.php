@@ -60,7 +60,7 @@
                     <div class="col">
                         <label>Caratteri consentiti:</label>
                     </div>
-                    <div class="col d-flex flex-column">
+                    <div class="col">
                         <div><input type="checkbox" name="uppercase" value="true" checked> Lettere Maiuscole</div>
                         <div><input type="checkbox" name="lowercase" value="true" checked> Lettere Minuscole</div>
                         <div><input type="checkbox" name="numbers" value="true" checked> Numeri</div>

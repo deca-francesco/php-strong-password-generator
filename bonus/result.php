@@ -63,7 +63,7 @@ require_once "./functions.php";
             <!-- alert di errore dei numeri -->
             <?php if ($password === "err") : ?>
                 <div class="alert alert-danger mt-3 d-flex justify-content-between align-items-center">
-                    <strong><?php echo "ERRORE: La password non può contenere solo numeri senza ripetizioni per più di 10 caratteri" ?></strong>
+                    <strong>ERRORE: La password non può contenere solo numeri senza ripetizioni per più di 10 caratteri</strong>
                     <a href="./index.php" class="btn btn-outline-danger">Torna indietro</a>
                 </div>
             <?php endif; ?>
@@ -75,7 +75,7 @@ require_once "./functions.php";
                 </div>
                 <div class="mt-3 text-center">
                     <!-- ricarico la pagina con gli stessi parametri -->
-                    <a href="result.php?<?php echo $_SERVER['QUERY_STRING']; ?>" class="btn btn-primary">Genera nuova password</a>
+                    <a href="result.php?<?php echo $_SERVER['QUERY_STRING'] ?>" class="btn btn-primary">Genera nuova password</a>
                     <a href="index.php" class="btn btn-secondary">Torna alle opzioni</a>
                 </div>
             <?php endif; ?>

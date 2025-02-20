@@ -25,7 +25,8 @@ function generatePassword($length, $uppercase, $lowercase, $numbers, $symbols, $
         return "";
     }
 
-    // tipi di caratteri separati nella milestone 3, inizializzato a stringa vuota
+    // tipi di caratteri separati nella milestone 3, inizializzato a stringa vuota (Tutti sono 81 caratteri)
+    // se le checkbox non sono checkate non esistono nell'url, quindi nemmeno in $_GET
     $characters = "";
     if ($uppercase) $characters .= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     if ($lowercase) $characters .= "abcdefghijklmnopqrstuvwxyz";
