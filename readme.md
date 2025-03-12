@@ -20,3 +20,15 @@ Questa pagina riceverà la password che era stata generata tramite sessione e la
 
 ### Milestone 4 (BONUS)
 Gestire ulteriori parametri nel form per le password, dando la possibilità all’utente di specificare quali set di caratteri possono essere ammessi nella password da generare, tra lettere maiuscole, lettere minuscole, numeri e simboli.
+
+# Risultato
+- pagina principale
+<br>
+<img src="./result/bonus-1.png">
+<br>
+<br>
+
+- pagina password generata
+<br>
+<img src="./result/bonus-2.png">
+
